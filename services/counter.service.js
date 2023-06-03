@@ -21,6 +21,9 @@ module.exports = {
                 webPageUrl: "string"
             },
             async handler(ctx) {
+                if (!urlValidator.isPrefacedUrl(ctx.params.webPageUrl)) {
+                    return "Error! URL must be prefaced with http:// or https://";
+                }
                 if (!urlValidator.isValidURL(ctx.params.webPageUrl)) {
                     return `Error! Invalid URL: ${ctx.params.webPageUrl}.`;
                 }
