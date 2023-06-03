@@ -89,24 +89,24 @@ spec:
 
 ---
 #########################################################
-# Greeter service
+# Counter service
 #########################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greeter
+  name: counter
 spec:
   selector:
     matchLabels:
-      app: greeter
+      app: counter
   replicas: 2
   template:
     metadata:
       labels:
-        app: greeter
+        app: counter
     spec:
       containers:
-      - name: greeter
+      - name: counter
         image: web-page-word-counter-backend
         imagePullPolicy: IfNotPresent
         envFrom:
@@ -114,7 +114,7 @@ spec:
             name: common-env
         env:
           - name: SERVICES
-            value: greeter
+            value: counter
 
 
 ---
