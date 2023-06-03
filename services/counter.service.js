@@ -1,17 +1,8 @@
 "use strict";
 
+const axios = require("axios");
 const urlValidator = require("../helperFunctions/validation");
-
-const mockData = {
-    webPageUrl: "mockUrl",
-    totalWordCount: 10,
-    destructuredWordCount: [
-        { word: "the", count: 100 },
-        { word: "and", count: 90 },
-        { word: "umbrella", count: 2 },
-    ],
-};
-
+const countInformation = require("../helperFunctions/counting");
 
 module.exports = {
     name: "counter",
@@ -33,7 +24,15 @@ module.exports = {
                 if (!urlValidator.isValidURL(ctx.params.webPageUrl)) {
                     return `Error! Invalid URL: ${ctx.params.webPageUrl}.`;
                 }
-                return mockData;
+
+                try {
+                    const response = await axios.get(ctx.params.webPageUrl);
+
+                    return countInformation.getCountInformation(ctx.params.webPageUrl, response);
+                } catch (error) {
+                    console.log(error);
+                    return `Error! Failed to fetch URL: ${ctx.params.webPageUrl}.`;
+                }
             }
         },
     },
@@ -48,3 +47,4 @@ module.exports = {
 
     async stopped() { }
 };
+

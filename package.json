@@ -25,9 +25,11 @@
     "moleculer-repl": "^0.7.3"
   },
   "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "moleculer": "^0.14.26",
     "moleculer-web": "^0.10.4",
-    "nats": "^2.7.1",
-    "moleculer": "^0.14.26"
+    "nats": "^2.7.1"
   },
   "engines": {
     "node": ">= 16.x.x"
