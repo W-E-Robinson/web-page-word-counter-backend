@@ -1,14 +1,23 @@
 const cheerio = require("cheerio");
 
-//const mockData = {
-//    webPageUrl: "mockUrl",
-//    totalWordCount: 10,
-//    destructuredWordCount: [
-//        { word: "the", count: 100 },
-//        { word: "and", count: 90 },
-//        { word: "umbrella", count: 2 },
-//    ],
-//};
+const getWordOccurrences = (words) => {
+    const wordMap = new Map();
+
+    words.forEach((word) => {
+        if (wordMap.has(word)) {
+            wordMap.set(word, wordMap.get(word) + 1);
+        } else {
+            wordMap.set(word, 1);
+        }
+    });
+
+    const wordCountArr = Array.from(wordMap, ([word, count]) => ({ word, count }));
+
+    wordCountArr.sort((a, b) => b.count - a.count);
+
+    return wordCountArr;
+};
+
 
 const getCountInformation = (webPageUrl, axiosResponse) => {
     const html = axiosResponse.data;
@@ -23,10 +32,10 @@ const getCountInformation = (webPageUrl, axiosResponse) => {
     return {
         webPageUrl,
         totalWordCount: wordCount,
-        destructuredWordCount: [],//TO_DO: word count
+        destructuredWordCount: getWordOccurrences(words),
     };
 };
 
 module.exports = {
-    getCountInformation: getCountInformation
+    getCountInformation: getCountInformation,
 };
