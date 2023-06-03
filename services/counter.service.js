@@ -7,6 +7,10 @@ const countInformation = require("../helperFunctions/counting");
 module.exports = {
     name: "counter",
 
+    settings: {},
+
+    dependencies: [],
+
     actions: {
         count: {
             rest: {
@@ -35,5 +39,15 @@ module.exports = {
             }
         },
     },
+
+    events: {},
+
+    methods: {},
+
+    created() { },
+
+    async started() { },
+
+    async stopped() { }
 };
 
