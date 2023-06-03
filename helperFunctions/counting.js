@@ -15,24 +15,33 @@ const getWordOccurrences = (words) => {
 
     wordCountArr.sort((a, b) => b.count - a.count);
 
-    return wordCountArr;
+    return wordCountArr.slice(0, 25);
 };
 
 
+const filterWords = (words) => {
+    const specialCharactersRegex = /[[.,/{}[\]().|&!;-=]/;
+    const jsKeywordsRegex = /\b(instanceof|var|if|else|function)\b/i;
+    return words.filter((word) => {
+        return !specialCharactersRegex.test(word) && !jsKeywordsRegex.test(word);
+    });
+};
+
 const getCountInformation = (webPageUrl, axiosResponse) => {
     const html = axiosResponse.data;
-    console.log(html);
 
     const $ = cheerio.load(html);
-    const text = $.text();
-    const words = text.split(/\s+/);
-    console.log(words);
-    const wordCount = words.length;
+    const bodyText = $("body").text();
+    const words = bodyText.split(/\s+/);
+
+    const filteredWords = filterWords(words);
+
+    const wordCount = filteredWords.length;
 
     return {
         webPageUrl,
         totalWordCount: wordCount,
-        destructuredWordCount: getWordOccurrences(words),
+        destructuredWordCount: getWordOccurrences(filteredWords),
     };
 };
 
