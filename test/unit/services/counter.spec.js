@@ -11,12 +11,6 @@ describe("Test 'counter' service", () => {
     afterAll(() => broker.stop());
 
     describe("Test 'counter.count' action", () => {
-
-        xdescribe("Happy paths", () => {
-            test("should return successfully when correct user input", async () => {
-            });
-        });
-
         describe("Unhappy paths", () => {
             test("should return an error when URL is not prefaced with http:// or https://", async () => {
                 const response = await broker.call("counter.count", { webPageUrl: "www.google.com" });
