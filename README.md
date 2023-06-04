@@ -18,7 +18,7 @@ Start the server
   npm run dev
 ```
 
-## Run as kubernetes workloads
+## Run as Kubernetes workloads
 
 ### Required installations (Docker, Kubernetes, Minikube, gettext)
 
