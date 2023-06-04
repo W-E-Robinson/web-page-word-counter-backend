@@ -1,4 +1,4 @@
-# web-page-word-counter-frontend
+# web-page-word-counter-backend
 
 This is a Molecular application that provides a service to analyse a web page URL for both a count of the words on the page as well as a breakdown of word frequency.
 
