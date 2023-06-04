@@ -20,8 +20,34 @@ Start the server
 
 ## Run as kubernetes workloads
 
+### Required installations (Docker, Kubernetes, Minikube, gettext)
+
 ```bash
-  TO_DO
+  docker login
+```
+```bash
+  docker tag web-page-word-counter-backend <your-docker-hub-username>/web-page-word-counter-backend
+```
+```bash
+  docker push <your-docker-hub-username>/web-page-word-counter-backend
+```
+```bash
+  minikube start
+```
+```bash
+  minikube addons enable ingress
+```
+```bash
+  export DOCKER_HUB_USERNAME="<your-docker-hub-username>"
+```
+```bash
+  envsubst < k8s.yaml | kubectl apply -f -
+```
+```bash
+  kubectl port-forward service/api 30099:80
+```
+```bash
+  minikube dashboard
 ```
 
 ## Run tests
@@ -40,4 +66,5 @@ Start the server
 
 ## Tech Stack
 
-Molecular, Javascript, Axios, Docker, Jest, Cheerio
+Molecular, Javascript, Axios, Docker, Kubernetes, Minikube, Jest, Cheerio
+
