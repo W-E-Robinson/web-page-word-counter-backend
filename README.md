@@ -9,7 +9,7 @@ Accompanying frontend repo: [web-page-word-counter-frontend](https://github.com/
 Install dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
 Start the server
