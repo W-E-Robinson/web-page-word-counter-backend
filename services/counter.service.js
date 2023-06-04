@@ -4,20 +4,6 @@ const axios = require("axios");
 const urlValidator = require("../helperFunctions/validation");
 const countInformation = require("../helperFunctions/counting");
 
-class PrefacedUrlError extends Error {
-    constructor() {
-        super("Error! URL must be prefaced with http:// or https://");
-        this.name = "PrefacedUrlError";
-    }
-}
-
-class InvalidURLError extends Error {
-    constructor(url) {
-        super(`Error! Invalid URL: ${url}`);
-        this.name = "InvalidURLError";
-    }
-}
-
 module.exports = {
     name: "counter",
 
@@ -36,18 +22,19 @@ module.exports = {
             },
             async handler(ctx) {
                 if (!urlValidator.isPrefacedUrl(ctx.params.webPageUrl)) {
-                    throw new PrefacedUrlError();
+                    return "Error! URL must be prefaced with http:// or https://";
                 }
                 if (!urlValidator.isValidURL(ctx.params.webPageUrl)) {
-                    throw new InvalidURLError(ctx.params.webPageUrl);
+                    return `Error! Invalid URL: ${ctx.params.webPageUrl}`;
                 }
 
                 try {
                     const response = await axios.get(ctx.params.webPageUrl);
+
                     return countInformation.getCountInformation(ctx.params.webPageUrl, response);
                 } catch (error) {
-                    console.log(error.message);
-                    return error.message;
+                    console.log(error);
+                    return `Error! Failed to fetch URL: ${ctx.params.webPageUrl}`;
                 }
             }
         },
