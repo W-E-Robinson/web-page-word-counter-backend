@@ -40,6 +40,9 @@
     "rootDir": "./services",
     "roots": [
       "../test"
-    ]
+    ],
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

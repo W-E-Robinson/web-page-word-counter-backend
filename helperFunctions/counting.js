@@ -47,4 +47,6 @@ const getCountInformation = (webPageUrl, axiosResponse) => {
 
 module.exports = {
     getCountInformation: getCountInformation,
+    getWordOccurrences: getWordOccurrences,
+    filterWords: filterWords,
 };

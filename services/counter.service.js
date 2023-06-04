@@ -25,7 +25,7 @@ module.exports = {
                     return "Error! URL must be prefaced with http:// or https://";
                 }
                 if (!urlValidator.isValidURL(ctx.params.webPageUrl)) {
-                    return `Error! Invalid URL: ${ctx.params.webPageUrl}.`;
+                    return `Error! Invalid URL: ${ctx.params.webPageUrl}`;
                 }
 
                 try {
@@ -34,7 +34,7 @@ module.exports = {
                     return countInformation.getCountInformation(ctx.params.webPageUrl, response);
                 } catch (error) {
                     console.log(error);
-                    return `Error! Failed to fetch URL: ${ctx.params.webPageUrl}.`;
+                    return `Error! Failed to fetch URL: ${ctx.params.webPageUrl}`;
                 }
             }
         },
