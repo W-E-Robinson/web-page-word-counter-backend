@@ -19,13 +19,13 @@ services:
     networks:
       - internal
 
-  greeter:
+  counter:
     build:
       context: .
     image: web-page-word-counter-backend
     env_file: docker-compose.env
     environment:
-      SERVICES: greeter
+      SERVICES: counter
     depends_on:
       - nats
     networks:
