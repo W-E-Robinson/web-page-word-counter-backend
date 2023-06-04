@@ -38,7 +38,7 @@ minikube start
 minikube addons enable ingress
 ```
 ```bash
-  export DOCKER_HUB_USERNAME="<your-docker-hub-username>"
+export DOCKER_HUB_USERNAME="<your-docker-hub-username>"
 ```
 ```bash
 envsubst < k8s.yaml | kubectl apply -f -
