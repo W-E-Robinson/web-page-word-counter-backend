@@ -26,7 +26,8 @@ module.exports = {
 		use: [],
 
         cors: {
-            origin: "http://localhost:3001",
+            //origin: "http://localhost:3001",
+            origin: "*",
             methods: ["GET", "OPTIONS"],
             // Configures the Access-Control-Allow-Headers CORS header.
             allowedHeaders: [],

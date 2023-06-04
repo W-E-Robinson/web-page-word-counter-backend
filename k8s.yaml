@@ -10,15 +10,6 @@ data:
   LOGLEVEL: info
   SERVICEDIR: services
   TRANSPORTER: nats://nats:4222
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
 ---
 #########################################################
@@ -31,8 +22,9 @@ metadata:
 spec:
   selector:
     app: api
+  type: NodePort
   ports:
-  - port: 3000
+  - port: 80
     targetPort: 3000
 
 ---
@@ -43,11 +35,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  #annotations:
-  #  kubernetes.io/ingress.class: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: web-page-word-counter-backend.127.0.0.1.nip.io
+  - host: localhost
     http:
       paths:
       - path: /
@@ -56,7 +49,7 @@ spec:
           service:
             name: api
             port:
-              number: 3000
+              number: 80
 
 ---
 #########################################################
@@ -78,7 +71,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: web-page-word-counter-backend
+        image: ${DOCKER_HUB_USERNAME}/web-page-word-counter-backend
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
@@ -89,33 +82,32 @@ spec:
 
 ---
 #########################################################
-# Greeter service
+# Counter service
 #########################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greeter
+  name: counter
 spec:
   selector:
     matchLabels:
-      app: greeter
+      app: counter
   replicas: 2
   template:
     metadata:
       labels:
-        app: greeter
+        app: counter
     spec:
       containers:
-      - name: greeter
-        image: web-page-word-counter-backend
+      - name: counter
+        image: ${DOCKER_HUB_USERNAME}/web-page-word-counter-backend
         imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: common-env
         env:
           - name: SERVICES
-            value: greeter
-
+            value: counter
 
 ---
 #########################################################
@@ -159,9 +151,4 @@ spec:
         ports:
         - containerPort: 4222
           name: nats
-
-
-
-
-
 
