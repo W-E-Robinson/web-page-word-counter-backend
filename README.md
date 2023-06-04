@@ -15,7 +15,7 @@ npm install
 Start the server
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
 ## Run as Kubernetes workloads
@@ -23,37 +23,37 @@ Start the server
 ### Required installations (Docker, Kubernetes, Minikube, gettext)
 
 ```bash
-  docker login
+docker login
 ```
 ```bash
-  docker tag web-page-word-counter-backend <your-docker-hub-username>/web-page-word-counter-backend .
+docker tag web-page-word-counter-backend <your-docker-hub-username>/web-page-word-counter-backend .
 ```
 ```bash
-  docker push <your-docker-hub-username>/web-page-word-counter-backend
+docker push <your-docker-hub-username>/web-page-word-counter-backend
 ```
 ```bash
-  minikube start
+minikube start
 ```
 ```bash
-  minikube addons enable ingress
+minikube addons enable ingress
 ```
 ```bash
   export DOCKER_HUB_USERNAME="<your-docker-hub-username>"
 ```
 ```bash
-  envsubst < k8s.yaml | kubectl apply -f -
+envsubst < k8s.yaml | kubectl apply -f -
 ```
 ```bash
-  kubectl port-forward service/api 30099:80
+kubectl port-forward service/api 30099:80
 ```
 ```bash
-  minikube dashboard
+minikube dashboard
 ```
 
 ## Run tests
 
 ```bash
-  npm test
+npm test
 ```
 
 ## Services
