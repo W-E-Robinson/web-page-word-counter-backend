@@ -26,7 +26,7 @@ Start the server
   docker login
 ```
 ```bash
-  docker tag web-page-word-counter-backend <your-docker-hub-username>/web-page-word-counter-backend
+  docker tag web-page-word-counter-backend <your-docker-hub-username>/web-page-word-counter-backend .
 ```
 ```bash
   docker push <your-docker-hub-username>/web-page-word-counter-backend
