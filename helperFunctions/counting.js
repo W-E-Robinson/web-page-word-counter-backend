@@ -15,7 +15,7 @@ const getWordOccurrences = (words) => {
 
     wordCountArr.sort((a, b) => b.count - a.count);
 
-    return wordCountArr.slice(0, 25);
+    return wordCountArr;
 };
 
 
