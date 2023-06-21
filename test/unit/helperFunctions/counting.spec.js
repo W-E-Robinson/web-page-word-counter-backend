@@ -2,7 +2,7 @@ const { getWordOccurrences, filterWords } = require("../../../helperFunctions/co
 
 describe("getWordOccurrences", () => {
     test.each([
-        [["and", "website", "and", "umbrella", "website", "and"], [
+        [["and", "Website", "and", "umbrella", "website", "and"], [
             { word: "and", count: 3 },
             { word: "website", count: 2 },
             { word: "umbrella", count: 1 },
