@@ -4,10 +4,11 @@ const getWordOccurrences = (words) => {
     const wordMap = new Map();
 
     words.forEach((word) => {
-        if (wordMap.has(word)) {
-            wordMap.set(word, wordMap.get(word) + 1);
+        const lowercaseWord = word.toLowerCase();
+        if (wordMap.has(lowercaseWord)) {
+            wordMap.set(lowercaseWord, wordMap.get(lowercaseWord) + 1);
         } else {
-            wordMap.set(word, 1);
+            wordMap.set(lowercaseWord, 1);
         }
     });
 
@@ -17,7 +18,6 @@ const getWordOccurrences = (words) => {
 
     return wordCountArr;
 };
-
 
 const filterWords = (words) => {
     const specialCharactersRegex = /[[.,/{}[\]().|&!;-=]/;
