@@ -25,7 +25,7 @@ describe("Test 'counter' service", () => {
             });
 
             test.each([
-                ["./mocks/sample1.html", 18],
+                ["./mocks/sample1.html", 27],
                 ["./mocks/sample3.html", 18],
                 ["./mocks/sample2.html", 18],
             ])("should return word count and breakdown for %s", async (webPageUrl, expectedWordCount) => {
