@@ -20,10 +20,15 @@ const getWordOccurrences = (words) => {
 };
 
 const filterWords = (words) => {
-    console.log(words);
+    const trailingPunctuationRegex = /[.,!?]+$/;
     const nonGrammarCharsRegex = /[^a-zA-Z0-9]|^$/;
-    console.log(words.filter(word => !nonGrammarCharsRegex.test(word.trim())));
-    return words.filter((word) => !nonGrammarCharsRegex.test(word.trim()));
+
+    const filteredWords = words.map((word) => {
+        const trimmedWord = word.replace(trailingPunctuationRegex, "");
+        return trimmedWord.trim();
+    });
+
+    return filteredWords.filter((word) => !nonGrammarCharsRegex.test(word));
 };
 
 const getCountInformation = (webPageUrl, axiosResponse) => {
