@@ -18,7 +18,7 @@ Start the server
 npm run dev
 ```
 
-To view API information visit:
+To view API information visit
 
 ```bash
 localhost:3000
