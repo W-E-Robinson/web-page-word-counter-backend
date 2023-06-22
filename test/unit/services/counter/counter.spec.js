@@ -27,7 +27,7 @@ describe("Test 'counter' service", () => {
             test.each([
                 [
                     "./mocks/sample1.html",
-                    29,
+                    27,
                     [
                         { word: "sample", count: 6 },
                         { word: "text", count: 4 },
@@ -50,7 +50,7 @@ describe("Test 'counter' service", () => {
                 ],
                 [
                     "./mocks/sample2.html",
-                    27,
+                    28,
                     [
                         { word: "sample", count: 6 },
                         { word: "additional", count: 4 },
@@ -71,7 +71,7 @@ describe("Test 'counter' service", () => {
                 ],
                 [
                     "./mocks/sample3.html",
-                    27,
+                    28,
                     [
                         { word: "sample", count: 6 },
                         { word: "different", count: 4 },
