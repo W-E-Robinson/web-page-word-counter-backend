@@ -21,13 +21,9 @@ const getWordOccurrences = (words) => {
 
 const filterWords = (words) => {
     console.log(words);
-    words.shift();
-    words.pop();
-    const nonGrammarCharsRegex = /[^a-zA-Z0-9\s]/;
-    //const jsKeywordsRegex = /\b(instanceof|var|if|else|function)\b/i;
-    return words.filter((word) => {
-        return !nonGrammarCharsRegex.test(word.trim());// && !jsKeywordsRegex.test(word);
-    });
+    const nonGrammarCharsRegex = /[^a-zA-Z0-9]|^$/;
+    console.log(words.filter(word => !nonGrammarCharsRegex.test(word.trim())));
+    return words.filter((word) => !nonGrammarCharsRegex.test(word.trim()));
 };
 
 const getCountInformation = (webPageUrl, axiosResponse) => {
