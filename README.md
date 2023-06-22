@@ -18,6 +18,12 @@ Start the server
 npm run dev
 ```
 
+To view API information visit:
+
+```bash
+localhost:3000
+```
+
 ## Run as Kubernetes workloads
 
 ### Required installations (Docker, Kubernetes, Minikube, gettext)
