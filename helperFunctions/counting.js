@@ -20,10 +20,13 @@ const getWordOccurrences = (words) => {
 };
 
 const filterWords = (words) => {
-    const specialCharactersRegex = /[[.,/{}[\]().|&!;-=]/;
-    const jsKeywordsRegex = /\b(instanceof|var|if|else|function)\b/i;
+    console.log(words);
+    words.shift();
+    words.pop();
+    const nonGrammarCharsRegex = /[^a-zA-Z0-9\s]/;
+    //const jsKeywordsRegex = /\b(instanceof|var|if|else|function)\b/i;
     return words.filter((word) => {
-        return !specialCharactersRegex.test(word) && !jsKeywordsRegex.test(word);
+        return !nonGrammarCharsRegex.test(word.trim());// && !jsKeywordsRegex.test(word);
     });
 };
 
@@ -31,6 +34,7 @@ const getCountInformation = (webPageUrl, axiosResponse) => {
     const html = axiosResponse.data;
 
     const $ = cheerio.load(html);
+    $("script").remove();
     const bodyText = $("body").text();
     const words = bodyText.split(/\s+/);
 
