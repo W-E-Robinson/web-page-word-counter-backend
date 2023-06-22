@@ -2,7 +2,7 @@ const { getWordOccurrences, filterWords } = require("../../../helperFunctions/co
 
 describe("getWordOccurrences", () => {
     test.each([
-        [["and", "website", "and", "umbrella", "website", "and"], [
+        [["and", "Website", "and", "umbrella", "website", "and"], [
             { word: "and", count: 3 },
             { word: "website", count: 2 },
             { word: "umbrella", count: 1 },
@@ -16,9 +16,10 @@ describe("getWordOccurrences", () => {
 
 describe("filterWords", () => {
     test.each([
-        [["and", "website", "!", "if", "else", "umbrella"], ["and", "website", "umbrella"]],
+        [["and", "website", "!", "if", "else", "umbrella"], ["and", "website", "if", "else", "umbrella"]],
+        [["and", "website", "!", "?", " ", "umbrella"], ["and", "website", "umbrella"]],
         [[], []],
-    ])("filters out 'special characters' and some JavaScript keywords", (words, expected) => {
+    ])("filters out grammar leaving only words", (words, expected) => {
         const result = filterWords(words);
         expect(result).toEqual(expected);
     });

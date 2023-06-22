@@ -4,10 +4,11 @@ const getWordOccurrences = (words) => {
     const wordMap = new Map();
 
     words.forEach((word) => {
-        if (wordMap.has(word)) {
-            wordMap.set(word, wordMap.get(word) + 1);
+        const lowercaseWord = word.toLowerCase();
+        if (wordMap.has(lowercaseWord)) {
+            wordMap.set(lowercaseWord, wordMap.get(lowercaseWord) + 1);
         } else {
-            wordMap.set(word, 1);
+            wordMap.set(lowercaseWord, 1);
         }
     });
 
@@ -18,19 +19,23 @@ const getWordOccurrences = (words) => {
     return wordCountArr;
 };
 
-
 const filterWords = (words) => {
-    const specialCharactersRegex = /[[.,/{}[\]().|&!;-=]/;
-    const jsKeywordsRegex = /\b(instanceof|var|if|else|function)\b/i;
-    return words.filter((word) => {
-        return !specialCharactersRegex.test(word) && !jsKeywordsRegex.test(word);
+    const trailingPunctuationRegex = /[.,!?]+$/;
+    const nonGrammarCharsRegex = /[^a-zA-Z0-9]|^$/;
+
+    const filteredWords = words.map((word) => {
+        const trimmedWord = word.replace(trailingPunctuationRegex, "");
+        return trimmedWord.trim();
     });
+
+    return filteredWords.filter((word) => !nonGrammarCharsRegex.test(word));
 };
 
 const getCountInformation = (webPageUrl, axiosResponse) => {
     const html = axiosResponse.data;
 
     const $ = cheerio.load(html);
+    $("script").remove();
     const bodyText = $("body").text();
     const words = bodyText.split(/\s+/);
 
